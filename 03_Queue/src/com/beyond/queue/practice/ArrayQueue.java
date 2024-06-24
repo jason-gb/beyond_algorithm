@@ -4,7 +4,7 @@ public class ArrayQueue<T> implements Queue<T> {
 	private int front; // 큐의 첫번째 데이터가 저장되어 있는 배열의 인덱스
 	private int rear;  // 큐의 마지막 데이터가 저장되어 있는 배열의 인덱스
 	private int maxSize; // 큐배열의 최대 사이즈
-	private int size; // 큐에 자장된 데이터의 수
+	private int size; // 큐에 저장된 데이터의 수
 	private Object[] values; // 
 	
 	public ArrayQueue(int maxSize) {

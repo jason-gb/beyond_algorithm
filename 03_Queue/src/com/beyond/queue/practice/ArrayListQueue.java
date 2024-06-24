@@ -20,36 +20,73 @@ public class ArrayListQueue<T> implements Queue<T> {
 
 	@Override
 	public void enqueue(T value) {
+		if(this.size == this.maxSize) {
+			throw new RuntimeException("큐가 가득 찼습니다.");
+		} 
+		// 큐의 끝에 rear가 도달한 경우
+		if(rear == maxSize -1) {
+			rear = -1;
+		}
+		
+		values.add(++rear, value) ;
+		size++;
 	}
 
 	@Override
 	public int size() {
 		
-		return 0;
+		return this.size;
 	}
 
 	@Override
 	public boolean isEmpty() {
 		
-		return false;
+		return this.size == 0;
 	}
 
 	@Override
 	public T dequeue() {
+		if (isEmpty()) {
+			throw new RuntimeException("큐가 비어있습니다.");
+		}
 		
-		return null;
+		T value = values.get(front++);
+		
+		if (front == maxSize) {
+			front = 0 ;
+		}
+		
+		size--;
+		
+		
+		return value;
 	}
 
 	@Override
 	public T peek() {
+		if (isEmpty()) {
+			throw new RuntimeException("큐가 비어있습니다.");
+		}
 		
-		return null;
+		return values.get(front) ;
 	}
 
 	@Override
 	public boolean contains(T value) {
+		boolean result = false;
+		int front = this.front;
 		
-		return false;
+		for (int i = 0 ; i < size ; i ++) {
+			if (values.get(front).equals(value)) {
+				result = true;
+				
+				break;
+			}
+			
+			front = (front + 1) % maxSize;
+		}
+		
+		return result;
 	}
 
 	@Override
